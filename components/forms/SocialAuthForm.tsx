@@ -4,10 +4,11 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import React from "react";
 
+import { Button } from "../ui/button";
+
 import ROUTES from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 
-import { Button } from "../ui/button";
 
 const SocialAuthForm = () => {
   const buttonClass =
@@ -35,7 +36,7 @@ const SocialAuthForm = () => {
 
   return (
     <div className="mt-10 flex flex-wrap gap-2.5">
-      <Button className={buttonClass} onClick={() => handleSignIn("github")}>
+      {/* <Button className={buttonClass} onClick={() => handleSignIn("github")}>
         <Image
           src="/icons/github.svg"
           alt="Github Logo"
@@ -44,7 +45,7 @@ const SocialAuthForm = () => {
           className="invert-colors mr-2.5 object-contain"
         />
         <span>Log in with GitHub</span>
-      </Button>
+      </Button> */}
 
       <Button className={buttonClass} onClick={() => handleSignIn("google")}>
         <Image

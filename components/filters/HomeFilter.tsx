@@ -3,19 +3,19 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-import { formUrlQuery, removeKeysFromUrlQuery } from "@/lib/url";
-import { cn } from "@/lib/utils";
-
 import { Button } from "../ui/button";
 
-const filters = [
-  { name: "React", value: "react" },
-  { name: "JavaScript", value: "javascript" },
+import { formUrlQuery } from "@/lib/url";
+import { cn } from "@/lib/utils";
 
-  // { name: "Newest", value: "newest" },
-  // { name: "Popular", value: "popular" },
-  // { name: "Unanswered", value: "unanswered" },
-  // { name: "Recommeded", value: "recommended" },
+
+const filters = [
+  { name: "Tablet", value: "tablet" },
+  { name: "Capsule", value: "capsule" },
+  { name: "Softgel", value: "softgel" },
+  { name: "Syrup", value: "syrup" },
+  { name: "Injection", value: "injection" },
+  { name: "Paediatrics", value: "paediatrics" },
 ];
 
 const HomeFilter = () => {
@@ -26,14 +26,13 @@ const HomeFilter = () => {
 
   const handleTypeClick = (filter: string) => {
     let newUrl = "";
-
     if (filter === active) {
-      setActive("");
+      // setActive("");
 
-      newUrl = removeKeysFromUrlQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["filter"],
-      });
+      // newUrl = removeKeysFromUrlQuery({
+      //   params: searchParams.toString(),
+      //   keysToRemove: ["filter"],
+      // });
     } else {
       setActive(filter);
 
