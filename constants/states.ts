@@ -19,31 +19,6 @@ export const DEFAULT_ERROR = {
   },
 };
 
-export const EMPTY_QUESTION = {
-  title: "Ahh, No Questions Yet!",
-  message:
-    "The question board is empty. Maybe it’s waiting for your brilliant question to get things rolling",
-  button: {
-    text: "Ask a Question",
-    href: ROUTES.ASK_QUESTION,
-  },
-};
-
-export const EMPTY_TAGS = {
-  title: "No Tags Found",
-  message: "The tag cloud is empty. Add some keywords to make it rain.",
-  button: {
-    text: "Create Tag",
-    href: ROUTES.TAGS,
-  },
-};
-
-export const EMPTY_ANSWERS = {
-  title: "No Answers Found",
-  message:
-    "The answer board is empty. Make it rain with your brilliant answer.",
-};
-
 export const EMPTY_QUERIES = {
   title: "Queries Are Empty",
   message:

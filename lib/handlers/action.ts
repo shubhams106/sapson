@@ -3,21 +3,17 @@
 import { Session } from "next-auth";
 import { ZodError, ZodSchema } from "zod";
 
-import { auth } from "@/auth";
 
 import { UnauthorizedError, ValidationError } from "../http-errors";
 import dbConnect from "../mongoose";
+
+import { auth } from "@/auth";
 
 type ActionOptions<T> = {
   params?: T;
   schema?: ZodSchema<T>;
   authorize?: boolean;
 };
-
-// 1. Checking whether the schema and params are provided and validated.
-// 2. Checking whether the user is authorized.
-// 3. Connecting to the database.
-// 4. Returning the params and session.
 
 async function action<T>({
   params,
