@@ -31,7 +31,7 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/icons/question.svg",
-    route: "/ask-question",
-    label: "Ask a question",
+    route: "/ask-query",
+    label: "Ask a query",
   },
 ];

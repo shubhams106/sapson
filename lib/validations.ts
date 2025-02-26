@@ -125,3 +125,47 @@ export const SignInWithOAuthSchema = z.object({
     image: z.string().url("Invalid image URL").optional(),
   }),
 });
+
+
+
+export const AskQuerySchema = z.object({
+  name: z
+  .string()
+  .min(5, { message: "name is required." })
+  .max(100, { message: "name cannot exceed 100 characters." }),
+
+  email: z
+  .string()
+  .email({ message: "Please provide a valid email address." })
+  .optional(),
+
+  phone: z
+  .string()
+  .min(1, { message: "Phone number is required" })
+  .regex(/^\d{10}$/, { message: "Phone number must be exactly 10 digits" }),
+
+  drug_license: z
+  .boolean()
+  .default(true),
+
+  gst: z
+  .boolean()
+  .default(true),
+
+  wholesaler: z
+  .boolean()
+  .default(true),
+
+    
+    
+
+  products: z
+    .array(
+      z
+        .string()
+        .min(1, { message: "Tag is required." })
+        .max(50, { message: "Tag cannot exceed 50 characters." })
+    )
+    .min(1, { message: "At least one product is required." })
+    .max(10, { message: "Cannot add more than 10 products." }),
+});
