@@ -21,6 +21,18 @@ interface Question {
   createdAt: Date;
 }
 
+interface Product {
+  _id: number | string;
+  productName: string;
+  imageUrl: string;
+  mrp: number;
+  packing: string | number;
+  description: string;
+  category: string;
+  salt: string;
+}
+
+
 type ActionResponse<T = null> = {
   success: boolean;
   data?: T;

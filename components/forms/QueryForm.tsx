@@ -21,7 +21,15 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
+import { productsData } from "@/constants/productData";
 import ROUTES from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
 import { createQuery } from "@/lib/actions/query.action";
@@ -256,11 +264,39 @@ const QueryForm = ({session}: {session: any}) => {
               </FormLabel>
               <FormControl>
                 <div>
-                  <Input
+                  {/* <Input
                     className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border"
                     placeholder="Add products..."
                     onKeyDown={(e) => handleInputKeyDown(e, field)}
-                  />
+                  /> */}
+                  <Select
+                    onValueChange={(value: string) => {
+                      if (!field.value.includes(value)) {
+                        form.setValue("products", [...field.value, value]);
+                      } else {
+                        form.setError("products", {
+                          type: "manual",
+                          message: "Product already exists",
+                        });
+                      }
+                    }}
+                  >
+                    <SelectTrigger className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border">
+                      <SelectValue placeholder="Select a product..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.values(productsData).map((category) =>
+                        category.products.map((product) => (
+                          <SelectItem
+                            key={product._id}
+                            value={product.productName}
+                          >
+                            {product.productName}
+                          </SelectItem>
+                        ))
+                      )}
+                    </SelectContent>
+                  </Select>
                   {field.value.length > 0 && (
                     <div className="flex-start mt-2.5 flex-wrap gap-2.5">
                       {field?.value?.map((tag: string) => (

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import ProductCard from "@/components/cards/ProductCard";
 import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
@@ -48,12 +49,10 @@ const Home = async ({ searchParams }: SearchParams) => {
         />
       </section>
       <HomeFilter />
-      <div className="mt-10 flex w-full flex-col gap-6">
-     
-
+      <div className="mt-10 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredProducts.map((product) => {
           return(
-            <h1 key={product.productName}>{product.productName}</h1>
+            <ProductCard key={product._id} product={product} />
           )
         })}
       </div>
