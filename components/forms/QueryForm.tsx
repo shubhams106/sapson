@@ -8,6 +8,7 @@ import { z } from "zod";
 
 import TagCard from "../cards/TagCard";
 import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 import {
   Form,
   FormControl,
@@ -19,7 +20,7 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 
-import { AskQuerySchema, AskQuestionSchema } from "@/lib/validations";
+import { AskQuerySchema } from "@/lib/validations";
 
 const QuestionForm = () => {
 
@@ -76,7 +77,7 @@ const QuestionForm = () => {
     }
   };
 
-  const handleCreateQuery = (data: z.infer<typeof AskQuestionSchema>) => {
+  const handleCreateQuery = (data: z.infer<typeof AskQuerySchema>) => {
     console.log(data);
   };
 
@@ -108,6 +109,117 @@ const QuestionForm = () => {
             </FormItem>
           )}
         />
+         <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem className="flex w-full flex-col">
+              <FormLabel className="paragraph-semibold text-dark400_light800">
+                Email 
+              </FormLabel>
+              <FormControl>
+                <Input
+                  className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border"
+                  {...field}
+                />
+              </FormControl>
+              {/* <FormDescription className="body-regular text-light-500 mt-2.5">
+                Be specific and imagine you&apos;re asking a question to another
+                person.
+              </FormDescription> */}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+<FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem className="flex w-full flex-col">
+              <FormLabel className="paragraph-semibold text-dark400_light800">
+                Phone Number <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl>
+                <Input
+                  className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border"
+                  {...field}
+                />
+              </FormControl>
+              {/* <FormDescription className="body-regular text-light-500 mt-2.5">
+                Be specific and imagine you&apos;re asking a question to another
+                person.
+              </FormDescription> */}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+<FormField
+          control={form.control}
+          name="drug_license"
+          render={({ field }) => (
+            <FormItem className=" flex w-full items-center gap-5">
+              <FormLabel className="paragraph-semibold text-dark400_light800">
+                Do you have a drug license? <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl>
+               
+                <Checkbox
+                 checked={field.value}
+                 onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              {/* <FormDescription className="body-regular text-light-500 mt-2.5">
+                Be specific and imagine you&apos;re asking a question to another
+                person.
+              </FormDescription> */}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+<FormField
+          control={form.control}
+          name="gst"
+          render={({ field }) => (
+            <FormItem className=" flex w-full items-center gap-5">
+              <FormLabel className="paragraph-semibold text-dark400_light800">
+                Do you have a GST number? <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl>
+               
+                <Checkbox
+                 checked={field.value}
+                 onCheckedChange={field.onChange}
+                />
+              </FormControl>
+             
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+<FormField
+          control={form.control}
+          name="wholesaler"
+          render={({ field }) => (
+            <FormItem className=" flex w-full items-center gap-5">
+              <FormLabel className="paragraph-semibold text-dark400_light800">
+                Are you a wholesaler? <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl>
+               
+                <Checkbox
+                 checked={field.value}
+                 onCheckedChange={field.onChange}
+                />
+              </FormControl>
+             
+              <FormMessage />
+            </FormItem>
+          )}
+        />
        
         <FormField
           control={form.control}
@@ -115,7 +227,7 @@ const QuestionForm = () => {
           render={({ field }) => (
             <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                products
+                products <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <div>

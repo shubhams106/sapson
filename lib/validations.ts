@@ -135,9 +135,7 @@ export const AskQuerySchema = z.object({
   .max(100, { message: "name cannot exceed 100 characters." }),
 
   email: z
-  .string()
-  .email({ message: "Please provide a valid email address." })
-  .optional(),
+  .string().optional().nullable(),
 
   phone: z
   .string()
