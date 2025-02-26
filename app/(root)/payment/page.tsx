@@ -1,60 +1,31 @@
-import { Payment, columns } from "./columns"
+import { columns } from "./columns"
 import { DataTable } from "./data-table"
 
-async function getData(): Promise<Payment[]> {
+import { getQueries } from "@/lib/actions/query.action";
 
-return [
-    {
-      id: "728ed52f",
-      status: "pending",
-      name: "Mehul Patel",
-      email: "m@example.com",
-      phone: "9876543210",
-      query: "Product availability inquiry",
-      comment: "Requesting bulk order details",
-      date: "2024-03-20",
-      gst: true,
-      wholesaller: true,
-      drug_liscence: true,
-      
-    },
-    {
-        id: "728ed52f",
-        status: "pending",
-        name: "Mehul Patel",
-        email: "m@example.com",
-        phone: "9876543210",
-        query: "Product availability inquiry",
-        comment: "Requesting bulk order details",
-        date: "2024-03-20",
-        gst: true,
-        wholesaller: true,
-        drug_liscence: true,
-        
-      },
-      {
-        id: "728ed52f",
-        status: "pending",
-        name: "Mehul Patel",
-        email: "m@example.com",
-        phone: "9876543210",
-        query: "Product availability inquiry",
-        comment: "Requesting bulk order details",
-        date: "2024-03-20",
-        gst: true,
-        wholesaller: true,
-        drug_liscence: true,
-        
-      },
-  ]
+
+interface SearchParams {
+  searchParams: Promise<{ [key: string]: string }>;
 }
 
-export default async function DemoPage() {
-  const data = await getData()
+
+  const DemoPage = async ({ searchParams }: SearchParams) => {
+    const { page, pageSize, query, filter } = await searchParams;
+    const { success, data, error } = await getQueries({
+      page: Number(page) || 1,
+      pageSize: Number(pageSize) || 10,
+      query: query || "",
+      filter: filter || "",
+    });
+
+    const { queries } = data || {};
+    console.log(queries, 'yeh from api')
+  // const dataa = await getData()
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={queries} />
     </div>
   )
 }
+export default DemoPage

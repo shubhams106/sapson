@@ -131,7 +131,7 @@ export const SignInWithOAuthSchema = z.object({
 export const AskQuerySchema = z.object({
   name: z
   .string()
-  .min(5, { message: "name is required." })
+  .min(5, { message: "name should be more than 4 characters." })
   .max(100, { message: "name cannot exceed 100 characters." }),
 
   email: z

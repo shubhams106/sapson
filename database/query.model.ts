@@ -21,6 +21,9 @@ const QuerySchema = new Schema<IQuery>(
     gst: { type: Boolean, default: true },
     wholesaler: { type: Boolean, default: true },
     products: [{ type: String }],
+    status: { type: String,enum: ["pending", "approved", "rejected"], default: "pending" },
+    comment: { type: String, default: "" },
+    phone: { type: String, required: true },
 
   },
   { timestamps: true }

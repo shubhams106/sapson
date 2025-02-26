@@ -15,7 +15,7 @@ import {
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
-  id: string
+  _id: string
   status: "pending" | "processing" | "success" | "failed"
   email: string | null | undefined
   name: string
