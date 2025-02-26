@@ -12,15 +12,13 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
+export type IQuery = {
   _id: string
   status: "pending" | "processing" | "success" | "failed"
   email: string | null | undefined
   name: string
   phone: string
-  query: string
+  products: string[]
   comment: string
   date: string
   gst: boolean
@@ -28,20 +26,28 @@ export type Payment = {
   drug_liscence: boolean
 }
 
-export const columns: ColumnDef<Payment>[] = [
-    {
-        accessorKey: "date",
+export const columns: ColumnDef<IQuery>[] = [
+  {
+    accessorKey: "updatedAt",
     header: "Date",
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("updatedAt"));
+      return date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      }).replace(/\//g, '-');
+    }
   }, 
   {
     accessorKey: "name",
     header: "Name",
   }, 
   {
-    accessorKey: "query",
+    accessorKey: "products",
     header: "Query",    
     cell: ({ row }) => {
-        const Query = row.getValue("query") as string;
+        const Query = row.getValue("products") as string;
         return (
           <textarea 
             className="min-h-[100px] w-full" 
@@ -69,14 +75,22 @@ export const columns: ColumnDef<Payment>[] = [
         );
       }
   },
-//   {
-//     accessorKey: "email",
-//     header: "Email",
-//   },
+  {
+    accessorKey: "email",
+    header: "Email",
+    cell: ({ row }) => {
+      const finalEmail = row.getValue("email");
+      return finalEmail || "N/A";
+    }
+  },
   
   {
     accessorKey: "phone",
     header: "Phone",
+    cell: ({ row }) => {
+      const finalPhone = row.getValue("phone");
+      return finalPhone || "N/A";
+    }
   }, 
  
   
@@ -85,11 +99,11 @@ export const columns: ColumnDef<Payment>[] = [
     header: "GST",
   }, 
   {
-    accessorKey: "wholesaller",
-    header: "Wholesaller",
+    accessorKey: "wholesaler",
+    header: "wholesaler",
   },
    {
-    accessorKey: "drug_liscence",
+    accessorKey: "drug_license",
     header: "Drug Liscence",
   },
   {
@@ -107,19 +121,6 @@ export const columns: ColumnDef<Payment>[] = [
       );
     }
   },
-//   {
-//     accessorKey: "amount",
-//     header: () => <div className="text-right">Amount</div>,
-//     cell: ({ row }) => {
-//       const amount = parseFloat(row.getValue("amount"))
-//       const formatted = new Intl.NumberFormat("en-US", {
-//         style: "currency",
-//         currency: "USD",
-//       }).format(amount)
- 
-//       return <div className="text-right font-medium">{formatted}</div>
-//     },
-//   },
   {
     id: "actions",
     cell: () => {
