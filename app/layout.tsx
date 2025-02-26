@@ -21,11 +21,11 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "DevFlow",
+  title: "Sapson Pharma",
   description:
-    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
+  "Your trusted pharmaceutical partner. Browse our extensive range of pharmaceutical products for both wholesale and retail customers. Inquire about our products, get detailed information, and connect with us for your pharmaceutical needs.",
   icons: {
-    icon: "/images/site-logo.svg",
+    icon: "/images/site-logo.svg", 
   },
 };
 

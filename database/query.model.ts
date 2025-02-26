@@ -8,6 +8,8 @@ export interface IQuery {
   gst: boolean;
   wholesaler: boolean;
   products: string[];
+  status: "pending" | "approved" | "rejected";
+  comment: string;
 }
 
 export interface IQueryDoc extends IQuery, Document {}

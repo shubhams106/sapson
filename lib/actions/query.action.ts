@@ -11,7 +11,7 @@ import Query from "@/database/query.model";
 
 export async function createQuery(
   params: CreateQueryParams
-): Promise<ActionResponse<Question>> {
+): Promise<ActionResponse<Query>> {
   const validationResult = await action({
     params,
     schema: AskQuerySchema,

@@ -74,4 +74,6 @@ interface CreateQueryParams {
   drug_license: boolean;
   gst: boolean;
   wholesaler: boolean;
+  status: "pending" | "approved" | "rejected";
+  comment: string;
 }

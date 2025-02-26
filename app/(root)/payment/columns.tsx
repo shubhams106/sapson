@@ -63,7 +63,7 @@ export const columns: ColumnDef<Payment>[] = [
             className="rounded-md border border-gray-200 p-2"
           >
             <option value="pending">Pending</option>
-            <option value="success">Success</option>
+            <option value="approved">Approved</option>
             <option value="rejected">Rejected</option>
           </select>
         );

@@ -21,6 +21,21 @@ interface Question {
   createdAt: Date;
 }
 
+interface Query {
+  _id: string;
+  name: string;
+  email: string;
+  products: string[];
+  phone: string;
+  drug_license: boolean;
+  gst: boolean;
+  wholesaler: boolean;
+  status: "pending" | "approved" | "rejected";
+  comment: string;
+  createdAt: Date;
+}
+
+
 interface Product {
   _id: number | string;
   productName: string;

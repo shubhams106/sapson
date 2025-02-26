@@ -49,6 +49,8 @@ const QueryForm = ({session}: {session: any}) => {
       gst: true,
       wholesaler: true,
       products: [],
+      status: "pending",
+      comment: "",
     },
   });
 
@@ -67,8 +69,12 @@ const QueryForm = ({session}: {session: any}) => {
 
   const handleCreateQuery = async (data: z.infer<typeof AskQuerySchema>) => {
     startTransition(async () => {
-
-      const result = await createQuery(data);
+      // Ensure comment is not undefined before passing to createQuery
+      const queryData = {
+        ...data,
+        comment: data.comment || "" // Provide empty string if comment is undefined
+      };
+      const result = await createQuery(queryData);
 
       if (result.success) {
         toast({

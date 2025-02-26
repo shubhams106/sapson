@@ -18,7 +18,9 @@ const Home = async ({ searchParams }: SearchParams) => {
     category.products.filter((product) => {
       const matchesQuery = product.productName
         .toLowerCase()
-        .includes(query.toLowerCase());
+        .includes(query.toLowerCase()) || product.salt
+        .toLowerCase()
+        .includes(query.toLowerCase())
       
       const matchesFilter = filter
         ? product.category.toLowerCase() === filter.toLowerCase()
