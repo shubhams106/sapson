@@ -12,8 +12,8 @@ export const sidebarLinks = [
   
   {
     imgURL: "/icons/tag.svg",
-    route: "/tags",
-    label: "Tags",
+    route: "/queries",
+    label: "Queries",
   },
   {
     imgURL: "/icons/user.svg",
