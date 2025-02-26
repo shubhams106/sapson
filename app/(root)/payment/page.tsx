@@ -1,6 +1,8 @@
 import { columns } from "./columns"
 import { DataTable } from "./data-table"
 
+import DataRenderer from "@/components/DataRenderer";
+import { EMPTY_QUERIES } from "@/constants/states";
 import { getQueries } from "@/lib/actions/query.action";
 
 
@@ -20,12 +22,27 @@ interface SearchParams {
 
     const { queries } = data || {};
     console.log(queries, 'yeh from api')
-  // const dataa = await getData()
 
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={queries} />
-    </div>
+    <>
+      <section className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
+      <h1 className="h1-bold text-dark100_light900">All Queries</h1>
+      </section>
+
+      <DataRenderer
+        success={success}
+        error={error}
+        data={queries}
+        empty={EMPTY_QUERIES}
+        render={(queries) => (
+          <div className="container mx-auto py-10">
+          <DataTable columns={columns} data={queries} />
+        </div>
+        )}
+      />
+
+   
+    </>
   )
 }
 export default DemoPage
