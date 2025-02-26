@@ -52,32 +52,6 @@ const QueryForm = ({session}: {session: any}) => {
     },
   });
 
-  const handleInputKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    field: { value: string[] }
-  ) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const tagInput = e.currentTarget.value.trim();
-
-      if (tagInput && tagInput.length < 15 && !field.value.includes(tagInput)) {
-        form.setValue("products", [...field.value, tagInput]);
-        e.currentTarget.value = "";
-        form.clearErrors("products");
-      } else if (tagInput.length > 50) {
-        form.setError("products", {
-          type: "manual",
-          message: "Product should be less than 50 characters",
-        });
-      } else if (field.value.includes(tagInput)) {
-        form.setError("products", {
-          type: "manual",
-          message: "Product already exists",
-        });
-      }
-    }
-  };
-
   const handleProductsRemove = (tag: string, field: { value: string[] }) => {
     const newproducts = field.value.filter((t) => t !== tag);
 
