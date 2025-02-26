@@ -8,9 +8,10 @@ interface Props {
   product: Product;
 }
 
+// product: { _id, productName, imageUrl, mrp, packing, description, category, salt },
 
 const ProductCard = ({
-  product: { _id, productName, imageUrl, mrp, packing, description, category, salt },
+  product: { productName, imageUrl, mrp, packing, salt },
 }: Props) => {
   return (
 <Link href={ROUTES.ASK_QUERY}>

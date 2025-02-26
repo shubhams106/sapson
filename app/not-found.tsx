@@ -8,7 +8,7 @@ const Custom404 = () => {
     <div className="flex min-h-screen flex-col items-center justify-center gap-4">
       <h1 className="text-4xl font-bold">404</h1>
       <p className="text-xl">Oops! Page not found</p>
-      <p className="text-muted-foreground">The page you&apos;re looking for doesn&apos;t exist or has been moved.</p>
+      <p>The page you&apos;re looking for doesn&apos;t exist or has been moved. </p>
      
       <Button
           className="primary-gradient !text-light-900 min-h-[46px] px-4 py-3"

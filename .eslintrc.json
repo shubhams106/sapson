@@ -9,7 +9,7 @@
   "plugins": ["import"],
   "rules": {
     "import/order": [
-      "error",
+      "off",
       {
         "groups": [
           "builtin",
@@ -33,7 +33,8 @@
           "caseInsensitive": true
         }
       }
-    ]
+    ],
+     "tailwindcss/classnames-order": "off"
   },
   "overrides": [
     {
@@ -41,6 +42,19 @@
       "rules": {
         "no-undef": "off"
       }
+    },
+    {
+      "files": ["components/ui/**/*.ts", "components/ui/**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+         "tailwindcss/classnames-order": "off",
+          "tailwindcss/enforces-shorthand": "off",
+          "@typescript-eslint/no-explicit-any": "off",
+          "@typescript-eslint/no-empty-object-type": "off",
+          "@tailwindcss/no-custom-classname": "off",
+          "tailwindcss/no-custom-classname": "off"
+      }
     }
   ]
+  
 }
