@@ -1,7 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
+import React, { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -20,15 +22,20 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 
+import ROUTES from "@/constants/routes";
+import { toast } from "@/hooks/use-toast";
+import { createQuery } from "@/lib/actions/query.action";
 import { AskQuerySchema } from "@/lib/validations";
 
-const QuestionForm = () => {
 
+const QueryForm = ({session}: {session: any}) => {
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
   const form = useForm<z.infer<typeof AskQuerySchema>>({
     resolver: zodResolver(AskQuerySchema),
     defaultValues: {
-      name: "",
-      email: "",
+      name: session?.user?.name || "",
+      email: session?.user?.email || "",
       phone: "",
       drug_license: true,
       gst: true,
@@ -41,7 +48,6 @@ const QuestionForm = () => {
     e: React.KeyboardEvent<HTMLInputElement>,
     field: { value: string[] }
   ) => {
-    console.log(field, e);
     if (e.key === "Enter") {
       e.preventDefault();
       const tagInput = e.currentTarget.value.trim();
@@ -53,12 +59,12 @@ const QuestionForm = () => {
       } else if (tagInput.length > 50) {
         form.setError("products", {
           type: "manual",
-          message: "Tag should be less than 50 characters",
+          message: "Product should be less than 50 characters",
         });
       } else if (field.value.includes(tagInput)) {
         form.setError("products", {
           type: "manual",
-          message: "Tag already exists",
+          message: "Product already exists",
         });
       }
     }
@@ -77,8 +83,27 @@ const QuestionForm = () => {
     }
   };
 
-  const handleCreateQuery = (data: z.infer<typeof AskQuerySchema>) => {
-    console.log(data);
+  const handleCreateQuery = async (data: z.infer<typeof AskQuerySchema>) => {
+    startTransition(async () => {
+
+      const result = await createQuery(data);
+
+      if (result.success) {
+        toast({
+          title: "Success",
+          description: "Question created successfully",
+        });
+
+        if (result.data) { router.push(ROUTES.HOME); }
+      } else {
+        toast({
+          title: `Error ${result.status}`,
+          description: result.error?.message || "Something went wrong",
+          variant: "destructive",
+        });
+      }
+    });
+
   };
 
   return (
@@ -261,12 +286,18 @@ const QuestionForm = () => {
           )}
         />
 
-        <div className="mt-16 flex justify-end">
+<div className="mt-16 flex justify-end">
           <Button
             type="submit"
+            disabled={isPending}
             className="primary-gradient !text-light-900 w-fit"
           >
-            Ask A Query
+            {isPending ? (
+              <>
+                <ReloadIcon className="mr-2 size-4 animate-spin" />
+                <span>Submitting</span>
+              </>
+            ) :"Ask a Query"}
           </Button>
         </div>
       </form>
@@ -274,4 +305,4 @@ const QuestionForm = () => {
   );
 };
 
-export default QuestionForm;
+export default QueryForm;
