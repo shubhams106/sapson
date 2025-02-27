@@ -8,9 +8,12 @@ import { Button } from "../ui/button";
 
 import ROUTES from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 
 const SocialAuthForm = () => {
+  const router = useRouter();
+
   const buttonClass =
     "background-dark400_light900 body-medium text-dark200_light800 min-h-12 flex-1 rounded-2 px-4 py-3.5";
 
@@ -35,7 +38,7 @@ const SocialAuthForm = () => {
   };
 
   return (
-    <div className="mt-10 flex flex-wrap gap-2.5">
+    <div className="mt-10 flex flex-col flex-wrap gap-2.5">
       {/* <Button className={buttonClass} onClick={() => handleSignIn("github")}>
         <Image
           src="/icons/github.svg"
@@ -56,6 +59,16 @@ const SocialAuthForm = () => {
           className="mr-2.5 object-contain"
         />
         <span>Log in with Google</span>
+      </Button>
+      <Button className={buttonClass} onClick={() => router.push('/')}>
+      <Image
+          src="/icons/search.svg"
+          alt="Github Logo"
+          width={20}
+          height={20}
+          className="invert-colors mr-2.5 object-contain"
+        />
+        <span>See our products list first</span>
       </Button>
     </div>
   );

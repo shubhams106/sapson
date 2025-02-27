@@ -21,11 +21,11 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Sapson Pharma",
+  title: "SapsonPharma",
   description:
   "Your trusted pharmaceutical partner. Browse our extensive range of pharmaceutical products for both wholesale and retail customers. Inquire about our products, get detailed information, and connect with us for your pharmaceutical needs.",
   icons: {
-    icon: "/images/site-logo.svg", 
+    icon: "/images/sapson-icon.jpg", 
   },
 };
 

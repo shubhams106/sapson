@@ -38,15 +38,12 @@ const MobileNavigation = async () => {
         <SheetTitle className="hidden">Navigation</SheetTitle>
         <Link href="/" className="flex items-center gap-1">
           <Image
-            src="/images/site-logo.svg"
-            width={23}
-            height={23}
-            alt="Logo"
+            src="/images/Sapson-logo.png"
+            width={130}
+            height={130}
+            alt="Sapson-Logo"
           />
 
-          <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900">
-            Dev<span className="text-primary-500">Flow</span>
-          </p>
         </Link>
 
         <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">

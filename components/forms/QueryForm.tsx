@@ -35,19 +35,19 @@ import { toast } from "@/hooks/use-toast";
 import { createQuery } from "@/lib/actions/query.action";
 import { AskQuerySchema } from "@/lib/validations";
 
-interface User {
-  name: string;
-  email: string;
-  image: string;
-  id: string;
-}
+// interface User {
+//   name: string;
+//   email: string;
+//   image: string;
+//   id: string;
+// }
 
-interface Session {
-  user: User;
-  expires: string;
-}
+// interface Session {
+//   user: User;
+//   expires: string;
+// }
 
-const QueryForm = ({session}: {session: Session | null}) => {
+const QueryForm = ({session}: {session: any}) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<z.infer<typeof AskQuerySchema>>({
