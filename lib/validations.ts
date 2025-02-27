@@ -184,7 +184,8 @@ export const EditQuestionSchema = AskQuestionSchema.extend({
 
 export const EditQuerySchema = AskQuerySchema.extend({
   queryId: z.string().min(1, { message: "Query ID is required." }),
-  comment: z.string().min(1, { message: "Comment is required." })
+  comment: z.string().min(1, { message: "Comment is required." }),
+  status: z.enum(["pending", "approved", "rejected"]),
 });
 
 

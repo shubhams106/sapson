@@ -123,14 +123,13 @@ export async function editQuery(
 ): Promise<ActionResponse<IQueryDoc>> {
   const validationResult = await action({
     params,
-    schema: EditQuerySchema,
-    // authorize: true,
+    schema: EditQuerySchema,  
   });
 
   if (validationResult instanceof Error) {
     return handleError(validationResult) as ErrorResponse;
   }
-const { queryId, comment } = params;
+const { queryId, comment, status } = params;
 try {
   const query = await Query.findById(queryId);
 
@@ -139,6 +138,7 @@ try {
   }
 
   query.comment = comment;
+  query.status = status;
   await query.save();
 
   return { success: true, data: JSON.parse(JSON.stringify(query)) };

@@ -83,6 +83,6 @@ interface CreateQueryParams {
 interface EditQueryParams{
   queryId: string;
   comment: string;
-
+  status: "pending" | "approved" | "rejected";
 }
 
