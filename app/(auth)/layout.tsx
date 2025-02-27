@@ -29,6 +29,7 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
             width={100}
             height={100}
             className="object-contain"
+            priority
           />
         </div>
 

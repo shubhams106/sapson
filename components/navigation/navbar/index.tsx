@@ -20,6 +20,7 @@ const Navbar = async () => {
           width={150}
           height={150}
           alt="Sapson Logo"
+          priority
         />
 
         {/* <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden">

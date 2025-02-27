@@ -42,6 +42,7 @@ const MobileNavigation = async () => {
             width={130}
             height={130}
             alt="Sapson-Logo"
+            priority
           />
 
         </Link>
