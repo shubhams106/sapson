@@ -7,19 +7,19 @@ import { Button } from "@/components/ui/button"
 import { useState, useTransition } from "react"
 import { editQuery } from "@/lib/actions/query.action"
 import { toast } from "@/hooks/use-toast"
-export type IQuery = {
-  _id: string
-  status: "pending" | "processing" | "success" | "failed"
-  email: string | null | undefined
-  name: string
-  phone: string
-  products: string[]
-  comment: string
-  date: string
-  gst: boolean
-  wholesaller: boolean
-  drug_liscence: boolean
-}
+// export type IQuery = {
+//   _id: string
+//   status: "pending" | "success" | "failed"
+//   email: string | null | undefined
+//   name: string
+//   phone: string
+//   products: string[]
+//   comment: string
+//   date: string
+//   gst: boolean
+//   wholesaller: boolean
+//   drug_liscence: boolean
+// }
 
 const CommentCell = ({ row, cellName }: { row: any, cellName: string }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -93,7 +93,7 @@ const CommentCell = ({ row, cellName }: { row: any, cellName: string }) => {
   );
 };
 
-export const columns: ColumnDef<IQuery>[] = [
+export const columns: ColumnDef<Query>[] = [
   {
     accessorKey: "updatedAt",
     header: "Date",
