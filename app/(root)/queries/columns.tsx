@@ -12,6 +12,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+import { useState, useTransition } from "react"
+import { editQuery } from "@/lib/actions/query.action"
+import { toast } from "@/hooks/use-toast"
 export type IQuery = {
   _id: string
   status: "pending" | "processing" | "success" | "failed"
@@ -25,6 +28,56 @@ export type IQuery = {
   wholesaller: boolean
   drug_liscence: boolean
 }
+
+const CommentCell = ({ row }: { row: any }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedComment, setEditedComment] = useState(row.getValue("comment") as string);
+  const [isPending, startTransition] = useTransition();
+
+  const handleSaveEdit = async () => {
+    startTransition(async () => {
+     await editQuery({
+      queryId: row.original._id,
+      comment: editedComment,
+    });
+    toast({
+      title: "Success",
+      description: "Edited successfully"
+    });
+    setIsEditing(false);
+    });
+  };
+
+  return (
+    <div className="min-w-[300px] flex flex-col gap-2">
+      <textarea 
+        className="min-h-[150px] w-full" 
+        rows={5} 
+        defaultValue={editedComment}
+        onChange={(e) => setEditedComment(e.target.value)}
+        readOnly={!isEditing}
+      />
+      <div className="flex gap-2">
+        <Button 
+          variant="outline" 
+          onClick={() => setIsEditing(!isEditing)}
+        >
+          {isEditing ? 'Cancel' : 'Edit'}
+        </Button>
+        {isEditing && (
+          <Button 
+            variant="default"
+            onClick={handleSaveEdit}
+            disabled={isPending}
+
+          >
+            {isPending ? 'Saving...' : 'Save'}
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export const columns: ColumnDef<IQuery>[] = [
   {
@@ -49,12 +102,14 @@ export const columns: ColumnDef<IQuery>[] = [
     cell: ({ row }) => {
         const Query = row.getValue("products") as string;
         return (
+          <div className="min-w-[300px]">
           <textarea 
-            className="min-h-[100px] w-full" 
+            className="min-h-[150px] w-full" 
             rows={5} 
             defaultValue={Query}
             readOnly
           />
+          </div>
         );
       }
   }, 
@@ -76,14 +131,10 @@ export const columns: ColumnDef<IQuery>[] = [
       }
   },
   {
-    accessorKey: "email",
-    header: "Email",
-    cell: ({ row }) => {
-      const finalEmail = row.getValue("email");
-      return finalEmail || "N/A";
-    }
+    accessorKey: "comment",
+    header: "Comment",
+    cell: ({ row }) => <CommentCell row={row} />
   },
-  
   {
     accessorKey: "phone",
     header: "Phone",
@@ -92,8 +143,14 @@ export const columns: ColumnDef<IQuery>[] = [
       return finalPhone || "N/A";
     }
   }, 
- 
-  
+  {
+    accessorKey: "email",
+    header: "Email",
+    cell: ({ row }) => {
+      const finalEmail = row.getValue("email");
+      return finalEmail || "N/A";
+    }
+  },
   {
     accessorKey: "gst",
     header: "GST",
@@ -106,21 +163,7 @@ export const columns: ColumnDef<IQuery>[] = [
     accessorKey: "drug_license",
     header: "Drug Liscence",
   },
-  {
-    accessorKey: "comment",
-    header: "Comment",
-    cell: ({ row }) => {
-      const comment = row.getValue("comment") as string;
-      return (
-        <textarea 
-          className="min-h-[100px] w-full" 
-          rows={5} 
-          defaultValue={comment}
-          readOnly
-        />
-      );
-    }
-  },
+ 
   {
     id: "actions",
     cell: () => {

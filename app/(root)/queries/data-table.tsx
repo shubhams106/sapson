@@ -31,9 +31,9 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    // getPaginationRowModel: getPaginationRowModel(),
   })
-
+// console.log(columns, 'columnscolumnscolumns')
   return (
     <>
     <div className="rounded-md border">

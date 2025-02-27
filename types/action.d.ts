@@ -27,6 +27,7 @@ interface EditQuestionParams extends CreateQuestionParams {
   questionId: string;
 }
 
+
 interface GetQuestionParams {
   questionId: string;
 }
@@ -77,3 +78,11 @@ interface CreateQueryParams {
   status: "pending" | "approved" | "rejected";
   comment: string;
 }
+
+
+interface EditQueryParams{
+  queryId: string;
+  comment: string;
+
+}
+

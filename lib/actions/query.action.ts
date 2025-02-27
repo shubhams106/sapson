@@ -4,9 +4,9 @@ import { Error, FilterQuery } from "mongoose";
 
 import action from "../handlers/action";
 import handleError from "../handlers/error";
-import {AskQuerySchema, PaginatedSearchParamsSchema} from "../validations";
+import {AskQuerySchema, EditQuerySchema, PaginatedSearchParamsSchema} from "../validations";
 
-import Query from "@/database/query.model";
+import Query, { IQueryDoc } from "@/database/query.model";
 
 
 export async function createQuery(
@@ -115,4 +115,34 @@ export async function getQueries(
   } catch (error) {
     return handleError(error) as ErrorResponse;
   }
+}
+
+
+export async function editQuery(
+  params: EditQueryParams
+): Promise<ActionResponse<IQueryDoc>> {
+  const validationResult = await action({
+    params,
+    schema: EditQuerySchema,
+    // authorize: true,
+  });
+
+  if (validationResult instanceof Error) {
+    return handleError(validationResult) as ErrorResponse;
+  }
+const { queryId, comment } = params;
+try {
+  const query = await Query.findById(queryId);
+
+  if (!query) {
+    throw new Error("Query not found");
+  }
+
+  query.comment = comment;
+  await query.save();
+
+  return { success: true, data: JSON.parse(JSON.stringify(query)) };
+} catch (error) {
+  return handleError(error) as ErrorResponse;
+}
 }

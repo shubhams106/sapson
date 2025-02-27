@@ -182,6 +182,12 @@ export const EditQuestionSchema = AskQuestionSchema.extend({
   questionId: z.string().min(1, { message: "Question ID is required." }),
 });
 
+export const EditQuerySchema = AskQuerySchema.extend({
+  queryId: z.string().min(1, { message: "Query ID is required." }),
+  comment: z.string().min(1, { message: "Comment is required." })
+});
+
+
 export const GetQuestionSchema = z.object({
   questionId: z.string().min(1, { message: "Question ID is required." }),
 });
