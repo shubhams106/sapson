@@ -174,13 +174,13 @@ export const AskQuerySchema = z.object({
     .min(1, { message: "At least one product is required." })
     .max(10, { message: "Cannot add more than 10 products." }),
 
-  // comment: z
-  // .string()
-  // .max(1000, { message: "Comment cannot exceed 1000 characters." })
-  // .optional(),
-  comment: z.string().min(1, { message: "Comment is required." })
+  comment: z
+  .string()
   .max(1000, { message: "Comment cannot exceed 1000 characters." })
-  .default("No comment provided"),
+  .optional(),
+  // comment: z.string().min(1, { message: "Comment is required." })
+  // .max(1000, { message: "Comment cannot exceed 1000 characters." })
+  // .default("No comment provided"),
   status: z
   .enum(["pending", "approved", "rejected"])
   .default("pending"),
