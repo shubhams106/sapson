@@ -24,7 +24,7 @@ interface SearchParams {
   //     },
   //     "expires": "2025-03-28T17:09:29.558Z"
   // }
-    if(!session || session?.user?.email !== 'singlas106@gmail.com' && session?.user?.email !== 'sapsonpharma@gmail.com'){
+    if(!session || (session?.user?.email !== 'singlas106@gmail.com' && session?.user?.email !== 'sapsonpharma@gmail.com')){
       redirect('/')
     }
     const { page, pageSize, query, filter } = await searchParams;
