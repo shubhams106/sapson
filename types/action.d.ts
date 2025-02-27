@@ -69,7 +69,7 @@ interface HasVotedResponse {
 
 interface CreateQueryParams {
   name: string;
-  email?: string | null | undefined;
+  email?: string | undefined;
   products: string[];
   phone: string;
   drug_license: boolean;

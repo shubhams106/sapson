@@ -134,8 +134,15 @@ export const AskQuerySchema = z.object({
   .min(5, { message: "name should be more than 4 characters." })
   .max(100, { message: "name cannot exceed 100 characters." }),
 
+  // email: z
+  // .string().optional().nullable(),
   email: z
-  .string().optional().nullable(),
+    .string()
+    .transform(str => str === "" ? str : str)
+    .refine(str => str === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str), {
+      message: "Please provide a valid email address or leave it empty"
+    }),
+
 
   phone: z
   .string()
@@ -167,10 +174,13 @@ export const AskQuerySchema = z.object({
     .min(1, { message: "At least one product is required." })
     .max(10, { message: "Cannot add more than 10 products." }),
 
-  comment: z
-  .string()
+  // comment: z
+  // .string()
+  // .max(1000, { message: "Comment cannot exceed 1000 characters." })
+  // .optional(),
+  comment: z.string().min(1, { message: "Comment is required." })
   .max(1000, { message: "Comment cannot exceed 1000 characters." })
-  .optional(),
+  .default("No comment provided"),
   status: z
   .enum(["pending", "approved", "rejected"])
   .default("pending"),

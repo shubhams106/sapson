@@ -6,11 +6,11 @@ import action from "../handlers/action";
 import handleError from "../handlers/error";
 import {AskQuerySchema, EditQuerySchema, PaginatedSearchParamsSchema} from "../validations";
 
-import Query, { IQueryDoc } from "@/database/query.model";
+import Query, { IQuery, IQueryDoc } from "@/database/query.model";
 
 
 export async function createQuery(
-  params: CreateQueryParams
+  params: IQuery
 ): Promise<ActionResponse<Query>> {
   const validationResult = await action({
     params,

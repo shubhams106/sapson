@@ -125,10 +125,7 @@ const QueryForm = ({session}: {session: any}) => {
                   {...field}
                 />
               </FormControl>
-              {/* <FormDescription className="body-regular text-light-500 mt-2.5">
-                Be specific and imagine you&apos;re asking a question to another
-                person.
-              </FormDescription> */}
+             
               <FormMessage />
             </FormItem>
           )}
@@ -293,10 +290,8 @@ const QueryForm = ({session}: {session: any}) => {
                       {field?.value?.map((tag: string) => (
                         <TagCard
                           key={tag}
-                          _id={tag}
                           name={tag}
                           remove
-                          isButton
                           handleRemove={() => handleProductsRemove(tag, field)}
                         />
                       ))}
