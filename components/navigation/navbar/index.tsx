@@ -28,12 +28,12 @@ const Navbar = async () => {
       </Link>
 
       <div className="flex-between gap-10">
-<p className="paragraph-semibold text-dark400_light900">
+{/* <p className="paragraph-semibold text-dark400_light900">
           +91 9996641047
 </p>
 <p className="paragraph-semibold text-dark400_light900">
 sapsonpharma@gmail.com
-</p>
+</p> */}
       </div>
 
       <div className="flex-between gap-5">

@@ -8,6 +8,7 @@ import { IAccountDoc } from "./database/account.model";
 import { IUserDoc } from "./database/user.model";
 import { api } from "./lib/api";
 import { SignInSchema } from "./lib/validations";
+import { comparePasswords } from "./lib/actions/auth.action";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -32,7 +33,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           if (!existingUser) return null;
 
-          const isValidPassword = await bcrypt.compare(
+          // const isValidPassword = await bcrypt.compare(
+          //   password,
+          //   existingAccount.password!
+          // );
+
+          const isValidPassword = await comparePasswords(
             password,
             existingAccount.password!
           );

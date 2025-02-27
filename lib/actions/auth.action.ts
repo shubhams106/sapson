@@ -1,6 +1,6 @@
 "use server";
 
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 
 
@@ -12,6 +12,20 @@ import { SignInSchema, SignUpSchema } from "../validations";
 import { signIn } from "@/auth";
 import Account from "@/database/account.model";
 import User from "@/database/user.model";
+
+export async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Buffer.from(hash).toString('base64');
+}
+
+export async function comparePasswords(password: string, hashedPassword: string): Promise<boolean> {
+  const hashedInput = await hashPassword(password);
+  return hashedInput === hashedPassword;
+}
+
+
 
 export async function signUpWithCredentials(
   params: AuthCredentials
@@ -40,7 +54,8 @@ export async function signUpWithCredentials(
       throw new Error("Username already exists");
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+    // const hashedPassword = await bcrypt.hash(password, 12);
+    const hashedPassword = await hashPassword(password);
 
     const [newUser] = await User.create([{ username, name, email }], {
       session,
@@ -96,7 +111,12 @@ export async function signInWithCredentials(
 
     if (!existingAccount) throw new NotFoundError("Account");
 
-    const passwordMatch = await bcrypt.compare(
+    // const passwordMatch = await bcrypt.compare(
+    //   password,
+    //   existingAccount.password
+    // );
+
+    const passwordMatch = await comparePasswords(
       password,
       existingAccount.password
     );
