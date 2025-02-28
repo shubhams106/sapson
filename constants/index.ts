@@ -9,7 +9,11 @@ export const sidebarLinks = [
   //   route: "/community",
   //   label: "Users",
   // },
-  
+  {
+    imgURL: "/icons/question.svg",
+    route: "/about-us",
+    label: "About Us",
+  },
   {
     imgURL: "/icons/tag.svg",
     route: "/queries",
@@ -26,10 +30,6 @@ export const sidebarLinks = [
     label: "Get a Quote",
   },
 ];
-
-
-
-
 
 export const sidebarLinksRoot = [
   {
@@ -80,9 +80,7 @@ export const sidebarLinksRootUser = [
     route: "/profile",
     label: "Profile",
   },
- 
 ];
-
 
 export const sidebarLinksNormalUser = [
   {
@@ -105,6 +103,4 @@ export const sidebarLinksNormalUser = [
     route: "/profile",
     label: "Profile",
   },
- 
 ];
-

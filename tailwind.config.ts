@@ -9,6 +9,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0%)" },
+          to: { transform: "translateX(-100%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 15s linear infinite",
+      },
       colors: {
         primary: {
           "100": "#FFF1E6",
