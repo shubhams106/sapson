@@ -2,12 +2,16 @@ import { ReactNode } from "react";
 
 // import LeftSidebar from "@/components/navigation/LeftSidebar";
 import Navbar from "@/components/navigation/navbar";
+import Footer from "@/components/footer";
+import SidebarButtons from "@/components/sidebarButtons";
+import SocialSidebar from "@/components/SocialSidebar";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <main className="background-light850_dark100 relative">
       <Navbar />
-
+      <SidebarButtons />
+      <SocialSidebar />
       <div>
         {/* <LeftSidebar /> */}
 
@@ -18,6 +22,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
         {/* <RightSidebar /> */}
       </div>
+      <Footer />
     </main>
   );
 };

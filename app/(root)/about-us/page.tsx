@@ -112,7 +112,7 @@ const About = async () => {
             </div>
           </div>
         </div>
-        <section className="max-w-6xl mx-auto text-left pt-16">
+        <section className="max-w-6xl mx-auto text-left py-16">
           <div className="container mx-auto flex flex-col md:flex-row items-center gap-10">
             {/* Left Side - Image */}
             <div className="w-full md:w-1/2 flex justify-center">
