@@ -28,14 +28,7 @@ const Navbar = async () => {
         </p> */}
       </Link>
 
-      <div className="flex-between gap-10">
-<p className="paragraph-semibold text-dark400_light900">
-          +91 9996641047
-</p>
-<p className="paragraph-semibold text-dark400_light900">
-sapsonpharma@gmail.com
-</p>
-      </div>
+     
 
       <div className="flex-between gap-5">
         <Theme />
