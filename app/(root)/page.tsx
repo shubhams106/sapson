@@ -16,14 +16,14 @@ const Home = async ({ searchParams }: SearchParams) => {
   
   const filteredProducts = Object.values(productsData).flatMap(category => 
     category.products.filter((product) => {
-      const matchesQuery = product.productName
+      const matchesQuery = product.ProductName
         .toLowerCase()
-        .includes(query.toLowerCase()) || product.salt
+        .includes(query.toLowerCase()) || product.Composition
         .toLowerCase()
         .includes(query.toLowerCase())
       
       const matchesFilter = filter
-        ? product.category.toLowerCase() === filter.toLowerCase()
+        ? product.Category.toLowerCase() === filter.toLowerCase()
         : true;
 
       return matchesQuery && matchesFilter;

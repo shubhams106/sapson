@@ -38,13 +38,13 @@ interface Query {
 
 interface Product {
   _id: number | string;
-  productName: string;
-  imageUrl: string;
-  mrp: number;
-  packing: string | number;
-  description: string;
-  category: string;
-  salt: string;
+  ProductName: string;
+  ImageUrl: string;
+  Mrp: number;
+  Packing: string | number;
+  Description: string;
+  Category: string;
+  Composition: string;
 }
 
 

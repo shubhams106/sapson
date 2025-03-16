@@ -10,12 +10,14 @@ import { cn } from "@/lib/utils";
 
 
 const filters = [
-  { name: "Tablet", value: "tablet" },
-  { name: "Capsule", value: "capsule" },
-  { name: "Softgel", value: "softgel" },
-  { name: "Syrup", value: "syrup" },
-  { name: "Injection", value: "injection" },
-  { name: "Paediatrics", value: "paediatrics" },
+  { name: "Tablet", value: "Tablet" },
+  { name: "Capsule", value: "Capsule" },
+  { name: "Softgel", value: "Softgel" },
+  { name: "Syrup", value: "Syrup" },
+  { name: "Injection", value: "Injection" },
+  { name: "Paediatrics", value: "Paediatrics" },
+  { name: "Ointment", value: "Ointment" },
+  { name: "Ayurvedic", value: "Ayurvedic" },
 ];
 
 const HomeFilter = () => {
