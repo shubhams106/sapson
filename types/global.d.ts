@@ -42,7 +42,7 @@ interface Product {
   ImageUrl: string;
   Mrp: number;
   Packing: string | number;
-  Description: string;
+  Description?: string;
   Category: string;
   Composition: string;
 }

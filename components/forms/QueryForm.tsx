@@ -277,7 +277,7 @@ const QueryForm = ({session}: {session: any}) => {
                         category.products.map((product) => (
                           <SelectItem
                             key={product._id}
-                            value={product.ProductName}
+                            value={product.ProductName + " " + product.Category}
                           >
                             {product.ProductName}-{product.Category}
                           </SelectItem>
